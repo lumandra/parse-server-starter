@@ -1,0 +1,25 @@
+{
+  "name": "vr-manager-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Mural Ventures",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "express-http-proxy": "^2.0.0",
+    "jwt-decode": "^4.0.0",
+    "parse-dashboard": "^5.3.0",
+    "parse-server": "^6.4.0",
+    "parse-server-mailgun": "^2.4.15",
+    "parse-server-mural-auth-adapter": "^1.0.3",
+    "request": "^2.88.2"
+  }
+}
