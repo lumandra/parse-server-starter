@@ -64,7 +64,6 @@ You can setup configuration in config.json file. Also some parameters can be pas
 | Parse server port | port | PORT |
 | Parse server URL | URLserver | SERVER_URL |
 | Database URI | URLdb | DATABASE_URI, MONGODB_URI |
-| Chisel site URL | URLsite | SITE_URL |
 | Parse application ID | appId | APP_ID |
 | Parse master key | masterKey | MASTER_KEY |
 
