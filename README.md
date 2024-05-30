@@ -1,10 +1,10 @@
-# Mural VR Manager Backend
+# Parse Server Starter
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ## Description
 
-The Mural VR Manager Backend is a parse-server, node, express, MongoDB web application designed to integrate with the Mural REST API and the Mural VR application for Unity. It serves as the backend for managing VR experiences and data related to the Mural VR application.
+A Parse Server setup for Forge
 
 ## Table of Contents
 

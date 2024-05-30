@@ -1,6 +1,6 @@
 {
     "parseConfig": {
-      "appName": "Mural VR Manager Backend",
+      "appName": "Parse Server",
       "appId": "SampleAppId",
       "masterKey": "SampleMasterKey",
   

@@ -95,6 +95,7 @@ Object.assign(parseConfig, {
   preventLoginWithUnverifiedEmail: JSON.parse(
     PREVENT_LOGIN_WITH_UNVERIFIED_EMAIL
   ),
+  masterKeyIps: ['0.0.0.0/0', '::1'],
   serverURL: SERVER_URL,
   publicServerURL: SERVER_URL,
   auth: {
@@ -128,7 +129,7 @@ if (DASHBOARD_ACTIVATED) {
       },
     ],
     trustProxy: 1,
-    cookieSessionSecret: "VRManager",
+    cookieSessionSecret: "IgniteForge",
     allowInsecureHTTP: 1,
   };
 
