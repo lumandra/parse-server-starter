@@ -5,6 +5,7 @@ const muralAuthAdapter = require('parse-server-mural-auth-adapter');
 const request = require("request");
 const http = require("http");
 const path = require("path");
+const write = require('write');
 const fs = require("fs");
 require("dotenv").config();
 const bodyParser = require("body-parser");
@@ -47,7 +48,42 @@ const PREVENT_LOGIN_WITH_UNVERIFIED_EMAIL =
 // emailOptions.domain       = process.env.MAILGUN_DOMAIN  || emailOptions.domain;
 // emailOptions.apiKey       = process.env.MAILGUN_API_KEY || emailOptions.apiKey;
 
-const app = express();
+const app = new express();
+
+if (process.env.REQUEST_LIMIT) {
+    app.use(bodyParser.json({limit: process.env.REQUEST_LIMIT}));
+    app.use(bodyParser.urlencoded({limit: process.env.REQUEST_LIMIT, extended: true}));
+}
+
+app.post('/users_code', bodyParser.json(), async (req, res, next) => {
+  if (req.headers['x-parse-application-id'] == APP_ID && req.headers['x-parse-rest-api-key'] == MASTER_KEY)
+  {
+    try{
+      write.sync("./cloud/users_code.js", req.body.custom_code)
+    }catch(e){
+      console.log(e)
+    }
+    res.send({ status: 'SUCCESS' })
+  }
+  else
+    res.status(401).send({message: "Unauthorized"})
+})
+
+const checkUsersCode = async() => {
+  try {
+    const SERVER_URL = process.env.SERVER_URL;
+    const parse_id = SERVER_URL.match(/https:\/\/(\d*).*/)[1]
+    var file = fs.statSync('./cloud/users_code.js');
+    const url = process.env.CUSTOM_CODE_URL || 'https://getforge.com/cloud66-webhook';
+    if (file.size == 0){
+      request.post({headers: {'content-type': 'application/json'},
+        url: url, body: `{"service": {"name": "parse-${parse_id }"}}`})
+    }
+  }
+  catch (e) {
+    console.log(e)
+  }
+};
 
 Object.assign(parseConfig, {
   appId: APP_ID,
@@ -118,9 +154,11 @@ const postStart = async () => {
 // Serve the Parse API on the /parse URL prefix
 app.use("/parse", parseServer.app);
 
-app.listen(PORT, function () {
-  postStart();
-  console.log("parse-server-example running on port 1337.");
+const httpServer = http.createServer(app);
+httpServer.listen(PORT, async () => {
+  await postStart();
+  await checkUsersCode();
+  console.log(`Chisel Parse server v${packageJSON.version} running on port ${PORT}.`);
 });
 
 /* Live Query Server */

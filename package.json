@@ -1,8 +1,8 @@
 {
-  "name": "vr-manager-backend",
+  "name": "forge-parse-server-starter",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
@@ -20,6 +20,7 @@
     "parse-server": "^6.4.0",
     "parse-server-mailgun": "^2.4.15",
     "parse-server-mural-auth-adapter": "^1.0.3",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "write": "^2.0.0"
   }
 }

@@ -1,4 +1,5 @@
 console.log('Cloud code connected');
+require ('./users_code');
 
 // // #TODO move to config
 // const DEEPLINKS_API_NAME = "CAMPFIRE";
